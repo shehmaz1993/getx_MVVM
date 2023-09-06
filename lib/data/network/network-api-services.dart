@@ -27,14 +27,26 @@ class NetworkApiServices extends BaseApiServices{
       case 400:
         throw InvalidUrlException();
       default:
+
         throw FetchDataException('Error occured while communicating with server ${response.statusCode}');
     }
   }
 
   @override
-  Future postApi(String url) {
-    // TODO: implement postApi
-    throw UnimplementedError();
+  Future postApi(String url,dynamic data) async {
+    dynamic responsejson;
+    try{
+      final response=await http.post(
+          Uri.parse(url),
+          body:data
+      ).timeout(const Duration(seconds: 10));
+      responsejson=returnResponse(response);
+    }on SocketException{
+      throw InternetException('No internet');
+    }on RequestException{
+      throw RequestException('Request exception');
+    }
+    return responsejson;
   }
   
   

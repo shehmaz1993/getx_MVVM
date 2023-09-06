@@ -19,18 +19,7 @@ class NetworkApiServices extends BaseApiServices{
     }
     return responsejson;
   }
-  dynamic returnResponse(http.Response response){
-    switch(response.statusCode){
-      case 200:
-        dynamic responseJson=jsonDecode(response.body);
-        return responseJson;
-      case 400:
-        throw InvalidUrlException();
-      default:
 
-        throw FetchDataException('Error occured while communicating with server ${response.statusCode}');
-    }
-  }
 
   @override
   Future postApi(String url,dynamic data) async {
@@ -47,6 +36,18 @@ class NetworkApiServices extends BaseApiServices{
       throw RequestException('Request exception');
     }
     return responsejson;
+  }
+  dynamic returnResponse(http.Response response){
+    switch(response.statusCode){
+      case 200:
+        dynamic responseJson=jsonDecode(response.body);
+        return responseJson;
+      case 400:
+        throw InvalidUrlException();
+      default:
+
+        throw FetchDataException('Error occured while communicating with server ${response.statusCode}');
+    }
   }
   
   

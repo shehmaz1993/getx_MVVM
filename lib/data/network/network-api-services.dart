@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:getx_project/data/app_exceptions.dart';
 import 'package:getx_project/data/network/base-api-services.dart';
 import 'package:http/http.dart' as http;
@@ -34,6 +35,9 @@ class NetworkApiServices extends BaseApiServices{
       throw InternetException('No internet');
     }on RequestException{
       throw RequestException('Request exception');
+    }
+    if (kDebugMode) {
+      print(responsejson);
     }
     return responsejson;
   }

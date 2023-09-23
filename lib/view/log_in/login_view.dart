@@ -5,7 +5,7 @@ import 'package:getx_project/res/color/app_color.dart';
 import 'package:getx_project/utils/utils.dart';
 
 import '../../res/components/round_button.dart';
-import '../../view_model/controller/login_view_model.dart';
+import '../../view_model/controller/login/login_view_model.dart';
 
 class LogInView extends StatefulWidget {
   const LogInView({Key? key}) : super(key: key);

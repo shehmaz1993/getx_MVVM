@@ -34,7 +34,7 @@ class LoginViewModel extends GetxController{
               isLogin: true
             );
             userPreferences.saveUser(userModel).then((value){
-              print('going to home');
+                Get.delete<LoginViewModel>();
                 Get.toNamed(RouteName.homeView);
             }).onError((error, stackTrace) {
                print(error.toString());
